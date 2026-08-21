@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: filings-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -e ".[api,dev]"
+    startCommand: python -m api
+    envVars:
+      - key: HOST
+        value: 0.0.0.0
+      - key: PYTHON_VERSION
+        value: 3.11.0
+    disk:
+      name: filings-data
+      mountPath: /data
+      sizeGB: 10
